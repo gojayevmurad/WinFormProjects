@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.previewLbl = new System.Windows.Forms.Label();
             this.mainDisplayLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.operatorResult = new System.Windows.Forms.Label();
             this.operatorDot = new System.Windows.Forms.Label();
             this.btn0 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
+            this.togglePositive = new System.Windows.Forms.Label();
             this.operatorPlus = new System.Windows.Forms.Label();
             this.btn3 = new System.Windows.Forms.Label();
             this.btn2 = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@
             this.btnC = new System.Windows.Forms.Label();
             this.btnCE = new System.Windows.Forms.Label();
             this.btnMod = new System.Windows.Forms.Label();
-            this.previewLbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +66,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(414, 73);
             this.panel1.TabIndex = 1;
+            // 
+            // previewLbl
+            // 
+            this.previewLbl.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previewLbl.Location = new System.Drawing.Point(47, 9);
+            this.previewLbl.Name = "previewLbl";
+            this.previewLbl.Size = new System.Drawing.Size(364, 23);
+            this.previewLbl.TabIndex = 3;
+            this.previewLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // mainDisplayLabel
             // 
@@ -89,7 +98,7 @@
             this.tableLayoutPanel1.Controls.Add(this.operatorResult, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.operatorDot, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.btn0, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label22, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.togglePositive, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.operatorPlus, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.btn3, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.btn2, 1, 3);
@@ -166,20 +175,21 @@
             this.btn0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btn0.Click += new System.EventHandler(this.NumClicked);
             // 
-            // label22
+            // togglePositive
             // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Gray;
-            this.label22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(0, 264);
-            this.label22.Margin = new System.Windows.Forms.Padding(0, 0, 1, 1);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(102, 68);
-            this.label22.TabIndex = 23;
-            this.label22.Text = "+/-";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.togglePositive.AutoSize = true;
+            this.togglePositive.BackColor = System.Drawing.Color.Gray;
+            this.togglePositive.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.togglePositive.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.togglePositive.ForeColor = System.Drawing.Color.White;
+            this.togglePositive.Location = new System.Drawing.Point(0, 264);
+            this.togglePositive.Margin = new System.Windows.Forms.Padding(0, 0, 1, 1);
+            this.togglePositive.Name = "togglePositive";
+            this.togglePositive.Size = new System.Drawing.Size(102, 68);
+            this.togglePositive.TabIndex = 23;
+            this.togglePositive.Text = "+/-";
+            this.togglePositive.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.togglePositive.Click += new System.EventHandler(this.togglePositive_Click);
             // 
             // operatorPlus
             // 
@@ -403,6 +413,7 @@
             this.btnC.TabIndex = 5;
             this.btnC.Text = " C";
             this.btnC.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnC.Click += new System.EventHandler(this.btnC_Click);
             // 
             // btnCE
             // 
@@ -418,6 +429,7 @@
             this.btnCE.TabIndex = 4;
             this.btnCE.Text = "CE";
             this.btnCE.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnCE.Click += new System.EventHandler(this.btnCE_Click);
             // 
             // btnMod
             // 
@@ -433,15 +445,7 @@
             this.btnMod.TabIndex = 3;
             this.btnMod.Text = "%";
             this.btnMod.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // previewLbl
-            // 
-            this.previewLbl.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.previewLbl.Location = new System.Drawing.Point(47, 9);
-            this.previewLbl.Name = "previewLbl";
-            this.previewLbl.Size = new System.Drawing.Size(364, 23);
-            this.previewLbl.TabIndex = 3;
-            this.previewLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMod.Click += new System.EventHandler(this.OperatorsClicked);
             // 
             // Form1
             // 
@@ -469,7 +473,7 @@
         private System.Windows.Forms.Label operatorResult;
         private System.Windows.Forms.Label operatorDot;
         private System.Windows.Forms.Label btn0;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label togglePositive;
         private System.Windows.Forms.Label operatorPlus;
         private System.Windows.Forms.Label btn3;
         private System.Windows.Forms.Label btn2;

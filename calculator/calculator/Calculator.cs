@@ -44,27 +44,40 @@ namespace calculator
             return result;
         }
 
+        private double mod()
+        {
+            double  result = FirstOperand % SecondOperand;
+            History.Add($"{FirstOperand} / {SecondOperand} = {result}");
+            return result;
+        }
+
+        public void Reset()
+        {
+            FirstOperand = 0;
+            SecondOperand = 0;
+            Operator = default;
+        }
+
         public double Calculate()
         {
             double result;
             switch ( Operator )
             {
                 case '+':
-                    Console.WriteLine("plus");
                     result= sum();
                     break;
                 case '-':
-                    Console.WriteLine("minus");
                     result = subt();
                     break;
                 case '*':
-                    Console.WriteLine("mul");
                     result = mul();
                     break;
                 case '/':
-                    Console.WriteLine("div");
                     result = div();
-                    break;  
+                    break;
+                case '%':
+                    result = mod();
+                    break;
                 default:
                     throw new NotImplementedException();
             }

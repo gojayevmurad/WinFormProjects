@@ -71,6 +71,10 @@ namespace calculator
 
         private void operatorResult_Click(object sender, EventArgs e)
         {
+            if(isFirstOperand == true || calculator.Operator == default)
+            {
+                return;    
+            }
             previewLbl.Text = calculator.Calculate().ToString();
             mainDisplayLabel.Text = calculator.SecondOperand.ToString();
         }
@@ -79,6 +83,33 @@ namespace calculator
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void togglePositive_Click(object sender, EventArgs e)
+        {
+            if (isFirstOperand && calculator.FirstOperand != 0)
+            {
+                calculator.FirstOperand *= -1;
+            }
+            else if(calculator.SecondOperand != 0)
+            {
+                calculator.SecondOperand *= -1;
+            }
+            SetDisplay();
+        }
+
+        private void btnCE_Click(object sender, EventArgs e)
+        {
+            calculator.Reset();
+            SetDisplay();
+            isFirstOperand = true;
+        }
+
+        private void btnC_Click(object sender, EventArgs e)
+        {
+            if (isFirstOperand) calculator.FirstOperand = (int)calculator.FirstOperand / 10;
+            else calculator.SecondOperand = (int)calculator.SecondOperand / 10;
+            SetDisplay();
         }
     }
 }
