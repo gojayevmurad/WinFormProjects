@@ -33,30 +33,30 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cafeAmountLbl = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.foodPanel4 = new System.Windows.Forms.Panel();
+            this.spriteCountDecrease = new System.Windows.Forms.Button();
+            this.spriteCountIncrease = new System.Windows.Forms.Button();
+            this.spriteCountTbox = new System.Windows.Forms.TextBox();
+            this.spritePriceTbox = new System.Windows.Forms.TextBox();
+            this.spriteCBox = new System.Windows.Forms.CheckBox();
+            this.foodPanel3 = new System.Windows.Forms.Panel();
+            this.cocacolaCountDecrease = new System.Windows.Forms.Button();
+            this.cocacolaCountIncrease = new System.Windows.Forms.Button();
+            this.cocacolaCountTbox = new System.Windows.Forms.TextBox();
+            this.cocacolaPriceTbox = new System.Windows.Forms.TextBox();
+            this.cocacolaCBox = new System.Windows.Forms.CheckBox();
+            this.foodPanel2 = new System.Windows.Forms.Panel();
+            this.gamburgerCountDecrease = new System.Windows.Forms.Button();
+            this.gamburgerCountIncrease = new System.Windows.Forms.Button();
+            this.gamburgerCountTbox = new System.Windows.Forms.TextBox();
+            this.gamburgerPriceTbox = new System.Windows.Forms.TextBox();
+            this.gamburgerCBox = new System.Windows.Forms.CheckBox();
+            this.foodPanel1 = new System.Windows.Forms.Panel();
+            this.hotdogCountDecrease = new System.Windows.Forms.Button();
+            this.hotdogCountIncrease = new System.Windows.Forms.Button();
+            this.hotdogCountTbox = new System.Windows.Forms.TextBox();
+            this.hotdogPriceTbox = new System.Windows.Forms.TextBox();
+            this.hotdogCBox = new System.Windows.Forms.CheckBox();
             this.groupOil = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -78,14 +78,14 @@
             this.groupTotalPrice = new System.Windows.Forms.GroupBox();
             this.button9 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.totalPriceTbox = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupCafe.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.foodPanel4.SuspendLayout();
+            this.foodPanel3.SuspendLayout();
+            this.foodPanel2.SuspendLayout();
+            this.foodPanel1.SuspendLayout();
             this.groupOil.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -108,10 +108,10 @@
             // 
             this.groupCafe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupCafe.Controls.Add(this.groupBox2);
-            this.groupCafe.Controls.Add(this.panel8);
-            this.groupCafe.Controls.Add(this.panel7);
-            this.groupCafe.Controls.Add(this.panel6);
-            this.groupCafe.Controls.Add(this.panel5);
+            this.groupCafe.Controls.Add(this.foodPanel4);
+            this.groupCafe.Controls.Add(this.foodPanel3);
+            this.groupCafe.Controls.Add(this.foodPanel2);
+            this.groupCafe.Controls.Add(this.foodPanel1);
             this.groupCafe.Font = new System.Drawing.Font("Yu Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupCafe.Location = new System.Drawing.Point(572, 54);
             this.groupCafe.Name = "groupCafe";
@@ -152,258 +152,311 @@
             this.cafeAmountLbl.Size = new System.Drawing.Size(93, 48);
             this.cafeAmountLbl.TabIndex = 0;
             this.cafeAmountLbl.Text = "0,00";
+            this.cafeAmountLbl.TextChanged += new System.EventHandler(this.fuelOrCafeAmountChanged);
             // 
-            // panel8
+            // foodPanel4
             // 
-            this.panel8.Controls.Add(this.button7);
-            this.panel8.Controls.Add(this.button8);
-            this.panel8.Controls.Add(this.textBox10);
-            this.panel8.Controls.Add(this.textBox11);
-            this.panel8.Controls.Add(this.checkBox4);
-            this.panel8.Location = new System.Drawing.Point(6, 188);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(364, 46);
-            this.panel8.TabIndex = 5;
+            this.foodPanel4.Controls.Add(this.spriteCountDecrease);
+            this.foodPanel4.Controls.Add(this.spriteCountIncrease);
+            this.foodPanel4.Controls.Add(this.spriteCountTbox);
+            this.foodPanel4.Controls.Add(this.spritePriceTbox);
+            this.foodPanel4.Controls.Add(this.spriteCBox);
+            this.foodPanel4.Location = new System.Drawing.Point(6, 188);
+            this.foodPanel4.Name = "foodPanel4";
+            this.foodPanel4.Size = new System.Drawing.Size(364, 46);
+            this.foodPanel4.TabIndex = 5;
             // 
-            // button7
+            // spriteCountDecrease
             // 
-            this.button7.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.button7.Location = new System.Drawing.Point(300, 9);
-            this.button7.Margin = new System.Windows.Forms.Padding(0);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(25, 32);
-            this.button7.TabIndex = 4;
-            this.button7.Text = "-";
-            this.button7.UseVisualStyleBackColor = true;
+            this.spriteCountDecrease.Enabled = false;
+            this.spriteCountDecrease.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.spriteCountDecrease.Location = new System.Drawing.Point(300, 9);
+            this.spriteCountDecrease.Margin = new System.Windows.Forms.Padding(0);
+            this.spriteCountDecrease.Name = "spriteCountDecrease";
+            this.spriteCountDecrease.Size = new System.Drawing.Size(25, 32);
+            this.spriteCountDecrease.TabIndex = 4;
+            this.spriteCountDecrease.Text = "-";
+            this.spriteCountDecrease.UseVisualStyleBackColor = true;
+            this.spriteCountDecrease.Click += new System.EventHandler(this.spriteCountBtnClicked);
             // 
-            // button8
+            // spriteCountIncrease
             // 
-            this.button8.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.button8.Location = new System.Drawing.Point(325, 9);
-            this.button8.Margin = new System.Windows.Forms.Padding(0);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(25, 32);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "+";
-            this.button8.UseVisualStyleBackColor = true;
+            this.spriteCountIncrease.Enabled = false;
+            this.spriteCountIncrease.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.spriteCountIncrease.Location = new System.Drawing.Point(325, 9);
+            this.spriteCountIncrease.Margin = new System.Windows.Forms.Padding(0);
+            this.spriteCountIncrease.Name = "spriteCountIncrease";
+            this.spriteCountIncrease.Size = new System.Drawing.Size(25, 32);
+            this.spriteCountIncrease.TabIndex = 3;
+            this.spriteCountIncrease.Text = "+";
+            this.spriteCountIncrease.UseVisualStyleBackColor = true;
+            this.spriteCountIncrease.Click += new System.EventHandler(this.spriteCountBtnClicked);
             // 
-            // textBox10
+            // spriteCountTbox
             // 
-            this.textBox10.Location = new System.Drawing.Point(242, 9);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox10.Multiline = true;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(55, 32);
-            this.textBox10.TabIndex = 3;
+            this.spriteCountTbox.Enabled = false;
+            this.spriteCountTbox.Location = new System.Drawing.Point(242, 9);
+            this.spriteCountTbox.Margin = new System.Windows.Forms.Padding(0);
+            this.spriteCountTbox.Multiline = true;
+            this.spriteCountTbox.Name = "spriteCountTbox";
+            this.spriteCountTbox.Size = new System.Drawing.Size(55, 32);
+            this.spriteCountTbox.TabIndex = 3;
+            this.spriteCountTbox.Text = "0";
+            this.spriteCountTbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.spriteCountTbox.TextChanged += new System.EventHandler(this.foodCountChanged);
             // 
-            // textBox11
+            // spritePriceTbox
             // 
-            this.textBox11.Location = new System.Drawing.Point(126, 9);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox11.Multiline = true;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(105, 32);
-            this.textBox11.TabIndex = 2;
+            this.spritePriceTbox.Enabled = false;
+            this.spritePriceTbox.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spritePriceTbox.Location = new System.Drawing.Point(126, 9);
+            this.spritePriceTbox.Margin = new System.Windows.Forms.Padding(0);
+            this.spritePriceTbox.Multiline = true;
+            this.spritePriceTbox.Name = "spritePriceTbox";
+            this.spritePriceTbox.ShortcutsEnabled = false;
+            this.spritePriceTbox.Size = new System.Drawing.Size(105, 32);
+            this.spritePriceTbox.TabIndex = 2;
+            this.spritePriceTbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // checkBox4
+            // spriteCBox
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.checkBox4.Location = new System.Drawing.Point(3, 12);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(76, 25);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "Sprite";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.spriteCBox.AutoSize = true;
+            this.spriteCBox.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.spriteCBox.Location = new System.Drawing.Point(3, 12);
+            this.spriteCBox.Name = "spriteCBox";
+            this.spriteCBox.Size = new System.Drawing.Size(76, 25);
+            this.spriteCBox.TabIndex = 3;
+            this.spriteCBox.Text = "Sprite";
+            this.spriteCBox.UseVisualStyleBackColor = true;
+            this.spriteCBox.CheckedChanged += new System.EventHandler(this.cafeCboxChanged);
             // 
-            // panel7
+            // foodPanel3
             // 
-            this.panel7.Controls.Add(this.button5);
-            this.panel7.Controls.Add(this.button6);
-            this.panel7.Controls.Add(this.textBox8);
-            this.panel7.Controls.Add(this.textBox9);
-            this.panel7.Controls.Add(this.checkBox3);
-            this.panel7.Location = new System.Drawing.Point(6, 136);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(364, 46);
-            this.panel7.TabIndex = 5;
+            this.foodPanel3.Controls.Add(this.cocacolaCountDecrease);
+            this.foodPanel3.Controls.Add(this.cocacolaCountIncrease);
+            this.foodPanel3.Controls.Add(this.cocacolaCountTbox);
+            this.foodPanel3.Controls.Add(this.cocacolaPriceTbox);
+            this.foodPanel3.Controls.Add(this.cocacolaCBox);
+            this.foodPanel3.Location = new System.Drawing.Point(6, 136);
+            this.foodPanel3.Name = "foodPanel3";
+            this.foodPanel3.Size = new System.Drawing.Size(364, 46);
+            this.foodPanel3.TabIndex = 5;
             // 
-            // button5
+            // cocacolaCountDecrease
             // 
-            this.button5.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.button5.Location = new System.Drawing.Point(300, 9);
-            this.button5.Margin = new System.Windows.Forms.Padding(0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(25, 32);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "-";
-            this.button5.UseVisualStyleBackColor = true;
+            this.cocacolaCountDecrease.Enabled = false;
+            this.cocacolaCountDecrease.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.cocacolaCountDecrease.Location = new System.Drawing.Point(300, 9);
+            this.cocacolaCountDecrease.Margin = new System.Windows.Forms.Padding(0);
+            this.cocacolaCountDecrease.Name = "cocacolaCountDecrease";
+            this.cocacolaCountDecrease.Size = new System.Drawing.Size(25, 32);
+            this.cocacolaCountDecrease.TabIndex = 4;
+            this.cocacolaCountDecrease.Text = "-";
+            this.cocacolaCountDecrease.UseVisualStyleBackColor = true;
+            this.cocacolaCountDecrease.Click += new System.EventHandler(this.colaCountBtnClicked);
             // 
-            // button6
+            // cocacolaCountIncrease
             // 
-            this.button6.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.button6.Location = new System.Drawing.Point(325, 9);
-            this.button6.Margin = new System.Windows.Forms.Padding(0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(25, 32);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "+";
-            this.button6.UseVisualStyleBackColor = true;
+            this.cocacolaCountIncrease.Enabled = false;
+            this.cocacolaCountIncrease.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.cocacolaCountIncrease.Location = new System.Drawing.Point(325, 9);
+            this.cocacolaCountIncrease.Margin = new System.Windows.Forms.Padding(0);
+            this.cocacolaCountIncrease.Name = "cocacolaCountIncrease";
+            this.cocacolaCountIncrease.Size = new System.Drawing.Size(25, 32);
+            this.cocacolaCountIncrease.TabIndex = 3;
+            this.cocacolaCountIncrease.Text = "+";
+            this.cocacolaCountIncrease.UseVisualStyleBackColor = true;
+            this.cocacolaCountIncrease.Click += new System.EventHandler(this.colaCountBtnClicked);
             // 
-            // textBox8
+            // cocacolaCountTbox
             // 
-            this.textBox8.Location = new System.Drawing.Point(242, 9);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(55, 32);
-            this.textBox8.TabIndex = 3;
+            this.cocacolaCountTbox.Enabled = false;
+            this.cocacolaCountTbox.Location = new System.Drawing.Point(242, 9);
+            this.cocacolaCountTbox.Margin = new System.Windows.Forms.Padding(0);
+            this.cocacolaCountTbox.Multiline = true;
+            this.cocacolaCountTbox.Name = "cocacolaCountTbox";
+            this.cocacolaCountTbox.Size = new System.Drawing.Size(55, 32);
+            this.cocacolaCountTbox.TabIndex = 3;
+            this.cocacolaCountTbox.Text = "0";
+            this.cocacolaCountTbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cocacolaCountTbox.TextChanged += new System.EventHandler(this.foodCountChanged);
             // 
-            // textBox9
+            // cocacolaPriceTbox
             // 
-            this.textBox9.Location = new System.Drawing.Point(126, 9);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox9.Multiline = true;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(105, 32);
-            this.textBox9.TabIndex = 2;
+            this.cocacolaPriceTbox.Enabled = false;
+            this.cocacolaPriceTbox.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cocacolaPriceTbox.Location = new System.Drawing.Point(126, 9);
+            this.cocacolaPriceTbox.Margin = new System.Windows.Forms.Padding(0);
+            this.cocacolaPriceTbox.Multiline = true;
+            this.cocacolaPriceTbox.Name = "cocacolaPriceTbox";
+            this.cocacolaPriceTbox.ShortcutsEnabled = false;
+            this.cocacolaPriceTbox.Size = new System.Drawing.Size(105, 32);
+            this.cocacolaPriceTbox.TabIndex = 2;
+            this.cocacolaPriceTbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // checkBox3
+            // cocacolaCBox
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.checkBox3.Location = new System.Drawing.Point(3, 12);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(108, 25);
-            this.checkBox3.TabIndex = 3;
-            this.checkBox3.Text = "Coca-Cola";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.cocacolaCBox.AutoSize = true;
+            this.cocacolaCBox.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.cocacolaCBox.Location = new System.Drawing.Point(3, 12);
+            this.cocacolaCBox.Name = "cocacolaCBox";
+            this.cocacolaCBox.Size = new System.Drawing.Size(108, 25);
+            this.cocacolaCBox.TabIndex = 3;
+            this.cocacolaCBox.Text = "Coca-Cola";
+            this.cocacolaCBox.UseVisualStyleBackColor = true;
+            this.cocacolaCBox.CheckedChanged += new System.EventHandler(this.cafeCboxChanged);
             // 
-            // panel6
+            // foodPanel2
             // 
-            this.panel6.Controls.Add(this.button3);
-            this.panel6.Controls.Add(this.button4);
-            this.panel6.Controls.Add(this.textBox6);
-            this.panel6.Controls.Add(this.textBox7);
-            this.panel6.Controls.Add(this.checkBox2);
-            this.panel6.Location = new System.Drawing.Point(6, 84);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(364, 46);
-            this.panel6.TabIndex = 5;
+            this.foodPanel2.Controls.Add(this.gamburgerCountDecrease);
+            this.foodPanel2.Controls.Add(this.gamburgerCountIncrease);
+            this.foodPanel2.Controls.Add(this.gamburgerCountTbox);
+            this.foodPanel2.Controls.Add(this.gamburgerPriceTbox);
+            this.foodPanel2.Controls.Add(this.gamburgerCBox);
+            this.foodPanel2.Location = new System.Drawing.Point(6, 84);
+            this.foodPanel2.Name = "foodPanel2";
+            this.foodPanel2.Size = new System.Drawing.Size(364, 46);
+            this.foodPanel2.TabIndex = 5;
             // 
-            // button3
+            // gamburgerCountDecrease
             // 
-            this.button3.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.button3.Location = new System.Drawing.Point(300, 9);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(25, 32);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "-";
-            this.button3.UseVisualStyleBackColor = true;
+            this.gamburgerCountDecrease.Enabled = false;
+            this.gamburgerCountDecrease.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.gamburgerCountDecrease.Location = new System.Drawing.Point(300, 9);
+            this.gamburgerCountDecrease.Margin = new System.Windows.Forms.Padding(0);
+            this.gamburgerCountDecrease.Name = "gamburgerCountDecrease";
+            this.gamburgerCountDecrease.Size = new System.Drawing.Size(25, 32);
+            this.gamburgerCountDecrease.TabIndex = 4;
+            this.gamburgerCountDecrease.Text = "-";
+            this.gamburgerCountDecrease.UseVisualStyleBackColor = true;
+            this.gamburgerCountDecrease.Click += new System.EventHandler(this.gamburgerCountBtnClicked);
             // 
-            // button4
+            // gamburgerCountIncrease
             // 
-            this.button4.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.button4.Location = new System.Drawing.Point(325, 9);
-            this.button4.Margin = new System.Windows.Forms.Padding(0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(25, 32);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "+";
-            this.button4.UseVisualStyleBackColor = true;
+            this.gamburgerCountIncrease.Enabled = false;
+            this.gamburgerCountIncrease.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.gamburgerCountIncrease.Location = new System.Drawing.Point(325, 9);
+            this.gamburgerCountIncrease.Margin = new System.Windows.Forms.Padding(0);
+            this.gamburgerCountIncrease.Name = "gamburgerCountIncrease";
+            this.gamburgerCountIncrease.Size = new System.Drawing.Size(25, 32);
+            this.gamburgerCountIncrease.TabIndex = 3;
+            this.gamburgerCountIncrease.Text = "+";
+            this.gamburgerCountIncrease.UseVisualStyleBackColor = true;
+            this.gamburgerCountIncrease.Click += new System.EventHandler(this.gamburgerCountBtnClicked);
             // 
-            // textBox6
+            // gamburgerCountTbox
             // 
-            this.textBox6.Location = new System.Drawing.Point(242, 9);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(55, 32);
-            this.textBox6.TabIndex = 3;
+            this.gamburgerCountTbox.Enabled = false;
+            this.gamburgerCountTbox.Location = new System.Drawing.Point(242, 9);
+            this.gamburgerCountTbox.Margin = new System.Windows.Forms.Padding(0);
+            this.gamburgerCountTbox.Multiline = true;
+            this.gamburgerCountTbox.Name = "gamburgerCountTbox";
+            this.gamburgerCountTbox.Size = new System.Drawing.Size(55, 32);
+            this.gamburgerCountTbox.TabIndex = 3;
+            this.gamburgerCountTbox.Text = "0";
+            this.gamburgerCountTbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.gamburgerCountTbox.TextChanged += new System.EventHandler(this.foodCountChanged);
             // 
-            // textBox7
+            // gamburgerPriceTbox
             // 
-            this.textBox7.Location = new System.Drawing.Point(126, 9);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(105, 32);
-            this.textBox7.TabIndex = 2;
+            this.gamburgerPriceTbox.Enabled = false;
+            this.gamburgerPriceTbox.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gamburgerPriceTbox.Location = new System.Drawing.Point(126, 9);
+            this.gamburgerPriceTbox.Margin = new System.Windows.Forms.Padding(0);
+            this.gamburgerPriceTbox.Multiline = true;
+            this.gamburgerPriceTbox.Name = "gamburgerPriceTbox";
+            this.gamburgerPriceTbox.ShortcutsEnabled = false;
+            this.gamburgerPriceTbox.Size = new System.Drawing.Size(105, 32);
+            this.gamburgerPriceTbox.TabIndex = 2;
+            this.gamburgerPriceTbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // checkBox2
+            // gamburgerCBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.checkBox2.Location = new System.Drawing.Point(3, 12);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(115, 25);
-            this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "Gamburger";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.gamburgerCBox.AutoSize = true;
+            this.gamburgerCBox.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.gamburgerCBox.Location = new System.Drawing.Point(3, 12);
+            this.gamburgerCBox.Name = "gamburgerCBox";
+            this.gamburgerCBox.Size = new System.Drawing.Size(115, 25);
+            this.gamburgerCBox.TabIndex = 3;
+            this.gamburgerCBox.Text = "Gamburger";
+            this.gamburgerCBox.UseVisualStyleBackColor = true;
+            this.gamburgerCBox.CheckedChanged += new System.EventHandler(this.cafeCboxChanged);
             // 
-            // panel5
+            // foodPanel1
             // 
-            this.panel5.Controls.Add(this.button2);
-            this.panel5.Controls.Add(this.button1);
-            this.panel5.Controls.Add(this.textBox5);
-            this.panel5.Controls.Add(this.textBox4);
-            this.panel5.Controls.Add(this.checkBox1);
-            this.panel5.Location = new System.Drawing.Point(6, 32);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(364, 46);
-            this.panel5.TabIndex = 2;
+            this.foodPanel1.Controls.Add(this.hotdogCountDecrease);
+            this.foodPanel1.Controls.Add(this.hotdogCountIncrease);
+            this.foodPanel1.Controls.Add(this.hotdogCountTbox);
+            this.foodPanel1.Controls.Add(this.hotdogPriceTbox);
+            this.foodPanel1.Controls.Add(this.hotdogCBox);
+            this.foodPanel1.Location = new System.Drawing.Point(6, 32);
+            this.foodPanel1.Name = "foodPanel1";
+            this.foodPanel1.Size = new System.Drawing.Size(364, 46);
+            this.foodPanel1.TabIndex = 2;
             // 
-            // button2
+            // hotdogCountDecrease
             // 
-            this.button2.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.button2.Location = new System.Drawing.Point(300, 9);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(25, 32);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "-";
-            this.button2.UseVisualStyleBackColor = true;
+            this.hotdogCountDecrease.Enabled = false;
+            this.hotdogCountDecrease.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.hotdogCountDecrease.Location = new System.Drawing.Point(300, 9);
+            this.hotdogCountDecrease.Margin = new System.Windows.Forms.Padding(0);
+            this.hotdogCountDecrease.Name = "hotdogCountDecrease";
+            this.hotdogCountDecrease.Size = new System.Drawing.Size(25, 32);
+            this.hotdogCountDecrease.TabIndex = 4;
+            this.hotdogCountDecrease.Text = "-";
+            this.hotdogCountDecrease.UseVisualStyleBackColor = true;
+            this.hotdogCountDecrease.Click += new System.EventHandler(this.hotdogCountBtnClicked);
             // 
-            // button1
+            // hotdogCountIncrease
             // 
-            this.button1.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(325, 9);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 32);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
+            this.hotdogCountIncrease.Enabled = false;
+            this.hotdogCountIncrease.Font = new System.Drawing.Font("Yu Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.hotdogCountIncrease.Location = new System.Drawing.Point(325, 9);
+            this.hotdogCountIncrease.Margin = new System.Windows.Forms.Padding(0);
+            this.hotdogCountIncrease.Name = "hotdogCountIncrease";
+            this.hotdogCountIncrease.Size = new System.Drawing.Size(25, 32);
+            this.hotdogCountIncrease.TabIndex = 3;
+            this.hotdogCountIncrease.Text = "+";
+            this.hotdogCountIncrease.UseVisualStyleBackColor = true;
+            this.hotdogCountIncrease.Click += new System.EventHandler(this.hotdogCountBtnClicked);
             // 
-            // textBox5
+            // hotdogCountTbox
             // 
-            this.textBox5.Location = new System.Drawing.Point(242, 9);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(55, 32);
-            this.textBox5.TabIndex = 3;
+            this.hotdogCountTbox.Enabled = false;
+            this.hotdogCountTbox.Location = new System.Drawing.Point(242, 9);
+            this.hotdogCountTbox.Margin = new System.Windows.Forms.Padding(0);
+            this.hotdogCountTbox.Multiline = true;
+            this.hotdogCountTbox.Name = "hotdogCountTbox";
+            this.hotdogCountTbox.Size = new System.Drawing.Size(55, 32);
+            this.hotdogCountTbox.TabIndex = 3;
+            this.hotdogCountTbox.Text = "0";
+            this.hotdogCountTbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.hotdogCountTbox.TextChanged += new System.EventHandler(this.foodCountChanged);
             // 
-            // textBox4
+            // hotdogPriceTbox
             // 
-            this.textBox4.Location = new System.Drawing.Point(126, 9);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(105, 32);
-            this.textBox4.TabIndex = 2;
+            this.hotdogPriceTbox.Enabled = false;
+            this.hotdogPriceTbox.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hotdogPriceTbox.Location = new System.Drawing.Point(126, 9);
+            this.hotdogPriceTbox.Margin = new System.Windows.Forms.Padding(0);
+            this.hotdogPriceTbox.Multiline = true;
+            this.hotdogPriceTbox.Name = "hotdogPriceTbox";
+            this.hotdogPriceTbox.ShortcutsEnabled = false;
+            this.hotdogPriceTbox.Size = new System.Drawing.Size(105, 32);
+            this.hotdogPriceTbox.TabIndex = 2;
+            this.hotdogPriceTbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // checkBox1
+            // hotdogCBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.checkBox1.Location = new System.Drawing.Point(3, 12);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(93, 25);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "Hot-Dog";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.hotdogCBox.AutoSize = true;
+            this.hotdogCBox.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.hotdogCBox.Location = new System.Drawing.Point(3, 12);
+            this.hotdogCBox.Name = "hotdogCBox";
+            this.hotdogCBox.Size = new System.Drawing.Size(93, 25);
+            this.hotdogCBox.TabIndex = 3;
+            this.hotdogCBox.Text = "Hot-Dog";
+            this.hotdogCBox.UseVisualStyleBackColor = true;
+            this.hotdogCBox.CheckedChanged += new System.EventHandler(this.cafeCboxChanged);
             // 
             // groupOil
             // 
@@ -418,7 +471,6 @@
             this.groupOil.TabIndex = 1;
             this.groupOil.TabStop = false;
             this.groupOil.Text = "Fuel";
-            this.groupOil.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // panel3
             // 
@@ -493,6 +545,7 @@
             this.fuelAmountLbl.Size = new System.Drawing.Size(93, 48);
             this.fuelAmountLbl.TabIndex = 0;
             this.fuelAmountLbl.Text = "0,00";
+            this.fuelAmountLbl.TextChanged += new System.EventHandler(this.fuelOrCafeAmountChanged);
             // 
             // panel4
             // 
@@ -608,7 +661,7 @@
             // 
             this.groupTotalPrice.Controls.Add(this.button9);
             this.groupTotalPrice.Controls.Add(this.label10);
-            this.groupTotalPrice.Controls.Add(this.label9);
+            this.groupTotalPrice.Controls.Add(this.totalPriceTbox);
             this.groupTotalPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupTotalPrice.Font = new System.Drawing.Font("Yu Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.groupTotalPrice.Location = new System.Drawing.Point(20, 468);
@@ -638,14 +691,14 @@
             this.label10.Text = "USD";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label9
+            // totalPriceTbox
             // 
-            this.label9.Location = new System.Drawing.Point(60, 37);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(224, 37);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "0,00";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.totalPriceTbox.Location = new System.Drawing.Point(60, 37);
+            this.totalPriceTbox.Name = "totalPriceTbox";
+            this.totalPriceTbox.Size = new System.Drawing.Size(224, 37);
+            this.totalPriceTbox.TabIndex = 0;
+            this.totalPriceTbox.Text = "0,00";
+            this.totalPriceTbox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form1
             // 
@@ -657,19 +710,18 @@
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(20);
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.groupCafe.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.foodPanel4.ResumeLayout(false);
+            this.foodPanel4.PerformLayout();
+            this.foodPanel3.ResumeLayout(false);
+            this.foodPanel3.PerformLayout();
+            this.foodPanel2.ResumeLayout(false);
+            this.foodPanel2.PerformLayout();
+            this.foodPanel1.ResumeLayout(false);
+            this.foodPanel1.PerformLayout();
             this.groupOil.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -703,38 +755,38 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox priceTxtBox;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Panel foodPanel1;
+        private System.Windows.Forms.CheckBox hotdogCBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label fuelAmountLbl;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.TextBox hotdogCountTbox;
+        private System.Windows.Forms.TextBox hotdogPriceTbox;
+        private System.Windows.Forms.Button hotdogCountDecrease;
+        private System.Windows.Forms.Button hotdogCountIncrease;
+        private System.Windows.Forms.Panel foodPanel4;
+        private System.Windows.Forms.Button spriteCountDecrease;
+        private System.Windows.Forms.Button spriteCountIncrease;
+        private System.Windows.Forms.TextBox spriteCountTbox;
+        private System.Windows.Forms.TextBox spritePriceTbox;
+        private System.Windows.Forms.CheckBox spriteCBox;
+        private System.Windows.Forms.Panel foodPanel3;
+        private System.Windows.Forms.Button cocacolaCountDecrease;
+        private System.Windows.Forms.Button cocacolaCountIncrease;
+        private System.Windows.Forms.TextBox cocacolaCountTbox;
+        private System.Windows.Forms.TextBox cocacolaPriceTbox;
+        private System.Windows.Forms.CheckBox cocacolaCBox;
+        private System.Windows.Forms.Panel foodPanel2;
+        private System.Windows.Forms.Button gamburgerCountDecrease;
+        private System.Windows.Forms.Button gamburgerCountIncrease;
+        private System.Windows.Forms.TextBox gamburgerCountTbox;
+        private System.Windows.Forms.TextBox gamburgerPriceTbox;
+        private System.Windows.Forms.CheckBox gamburgerCBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label cafeAmountLbl;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label totalPriceTbox;
         private System.Windows.Forms.Label label5;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BestOil
 {
-    internal class Food
+    public class Food
     {
         public string Title { get; set; }
         public double Price { get; set; }
