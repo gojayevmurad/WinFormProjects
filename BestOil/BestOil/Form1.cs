@@ -15,76 +15,103 @@ namespace BestOil
 
         public double selectedFuelUnitPrice { get; set; }
 
-        List<Fuel> fuels = new List<Fuel>
-        {
-            new Fuel{Title="AI-92",Price=1.01 },
-            new Fuel{Title="AI-95",Price= 2.03 },
-            new Fuel{Title="AI-98",Price=2.33 },
-            new Fuel{Title="Diesel",Price=0.81 }
-        };
-
         public Form1()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            comboBxFuel.Items.AddRange(fuels.ToArray());
-            comboBxFuel.SelectedIndex = 0;
+                comboBxFuel.Items.AddRange(OilStation.Fuels.ToArray());
+                comboBxFuel.SelectedIndex = 0;
 
-            hotdogPriceTbox.Text = Cafe.Foods.Find(food => food.Title == "Hot-Dog").Price + " USD";
-            gamburgerPriceTbox.Text = Cafe.Foods.Find(food => food.Title == "Gamburger").Price + " USD";
-            cocacolaPriceTbox.Text = Cafe.Foods.Find(food => food.Title == "Coca-Cola").Price + " USD";
-            spritePriceTbox.Text = Cafe.Foods.Find(food => food.Title == "Sprite").Price + " USD";
+                hotdogPriceTbox.Text = Cafe.Foods.Find(food => food.Title == "Hot-Dog").Price + " USD";
+                gamburgerPriceTbox.Text = Cafe.Foods.Find(food => food.Title == "Gamburger").Price + " USD";
+                cocacolaPriceTbox.Text = Cafe.Foods.Find(food => food.Title == "Coca-Cola").Price + " USD";
+                spritePriceTbox.Text = Cafe.Foods.Find(food => food.Title == "Sprite").Price + " USD";
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
+            }
         }
 
         private void comboBxFuel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var item = comboBxFuel.SelectedItem as Fuel;
-            if (item == null) return;
-            fuelLiterPrice.Text = item.Price.ToString();
-            selectedFuelUnitPrice = item.Price;
+            try
+            {
+                var item = comboBxFuel.SelectedItem as Fuel;
+                if (item == null) return;
+                fuelLiterPrice.Text = item.Price.ToString();
+                selectedFuelUnitPrice = item.Price;
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
+            }
         }
 
         private void fuel_radiobtn_changed(object sender, EventArgs e)
         {
-            var radioBtn = sender as RadioButton;
-            if(radioBtn.Text == "Liter")
+            try
             {
-                priceTxtBox.Enabled = false;
-                literTxtBox.Enabled = true;
+                var radioBtn = sender as RadioButton;
+                if (radioBtn.Text == "Liter")
+                {
+                    priceTxtBox.Enabled = false;
+                    literTxtBox.Enabled = true;
+                }
+                if (radioBtn.Text == "Price")
+                {
+                    priceTxtBox.Enabled = true;
+                    literTxtBox.Enabled = false;
+                }
             }
-            if (radioBtn.Text == "Price")
-            {
-                priceTxtBox.Enabled = true;
-                literTxtBox.Enabled = false;
+            catch (Exception ex)
+            { 
+                FileHandler.ErrorLog(ex); 
             }
+            
         }
 
         private void literTxtBox_TextChanged(object sender, EventArgs e)
         {
-
-            string value = literTxtBox.Text;
-            if (value == String.Empty)
+            try
             {
-                priceTxtBox.Text = string.Empty;
-                setFuelAmountLbl("0,00");
-                return;
+                string value = literTxtBox.Text;
+                if (value == String.Empty)
+                {
+                    priceTxtBox.Text = string.Empty;
+                    setFuelAmountLbl("0,00");
+                    return;
+                }
+                string fuelAmoubtLblData = (selectedFuelUnitPrice * Convert.ToDouble(value)).ToString();
+                priceTxtBox.Text = fuelAmoubtLblData;
+                setFuelAmountLbl(fuelAmoubtLblData);
             }
-            string fuelAmoubtLblData = (selectedFuelUnitPrice * Convert.ToDouble(value)).ToString();
-            priceTxtBox.Text = fuelAmoubtLblData;
-            setFuelAmountLbl(fuelAmoubtLblData);
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
+            }
         }
 
         private void priceTxtBox_TextChanged(object sender, EventArgs e)
         {
-            string value = priceTxtBox.Text;
-            if (value == String.Empty)
+            try
             {
-                literTxtBox.Text = string.Empty;
-                setFuelAmountLbl("0,00");
-                return;
+                string value = priceTxtBox.Text;
+                if (value == String.Empty)
+                {
+                    literTxtBox.Text = string.Empty;
+                    setFuelAmountLbl("0,00");
+                    return;
+                }
+                literTxtBox.Text = (Convert.ToDouble(value) / selectedFuelUnitPrice).ToString();
+                setFuelAmountLbl(value);
             }
-            literTxtBox.Text = (Convert.ToDouble(value) / selectedFuelUnitPrice).ToString();
-            setFuelAmountLbl(value);
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
+            }
         }
 
         private void setFuelAmountLbl(string value)
@@ -94,8 +121,10 @@ namespace BestOil
 
         private void cafeCboxChanged(object sender, EventArgs e)
         {
-            if(sender is CheckBox cBox)
+            try
             {
+                if (sender is CheckBox cBox)
+                {
 
                     switch (cBox.Text)
                     {
@@ -122,130 +151,180 @@ namespace BestOil
                         default:
                             break;
                     }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
             }
         }
 
         private void foodCountChanged(object sender, EventArgs e)
         {
-            if(sender is TextBox txtBox)
+            try
             {
-                if (txtBox.Text == String.Empty) txtBox.Text = "0";
-                switch(txtBox.Name)
+                if (sender is TextBox txtBox)
                 {
-                    case "hotdogCountTbox":
+                    if (txtBox.Text == String.Empty) txtBox.Text = "0";
+                    switch (txtBox.Name)
+                    {
+                        case "hotdogCountTbox":
 
-                        int countHotdog = Convert.ToInt32(hotdogCountTbox.Text);
+                            int countHotdog = Convert.ToInt32(hotdogCountTbox.Text);
 
-                        if (Cafe.Cart.ContainsKey("Hot-Dog")) Cafe.Cart["Hot-Dog"] = countHotdog;
-                        else Cafe.Cart.Add("Hot-Dog", countHotdog);
+                            if (Cafe.Cart.ContainsKey("Hot-Dog")) Cafe.Cart["Hot-Dog"] = countHotdog;
+                            else Cafe.Cart.Add("Hot-Dog", countHotdog);
 
-                        break;
-                    case "gamburgerCountTbox":
+                            break;
+                        case "gamburgerCountTbox":
 
-                        int countGamburger = Convert.ToInt32(gamburgerCountTbox.Text);
+                            int countGamburger = Convert.ToInt32(gamburgerCountTbox.Text);
 
-                        if (Cafe.Cart.ContainsKey("Gamburger")) Cafe.Cart["Gamburger"] = countGamburger;
-                        else Cafe.Cart.Add("Gamburger", countGamburger);
+                            if (Cafe.Cart.ContainsKey("Gamburger")) Cafe.Cart["Gamburger"] = countGamburger;
+                            else Cafe.Cart.Add("Gamburger", countGamburger);
 
-                        break;
-                    case "cocacolaCountTbox":
+                            break;
+                        case "cocacolaCountTbox":
 
-                        int countCola = Convert.ToInt32(cocacolaCountTbox.Text);
+                            int countCola = Convert.ToInt32(cocacolaCountTbox.Text);
 
-                        if (Cafe.Cart.ContainsKey("Coca-Cola")) Cafe.Cart["Coca-Cola"] = countCola;
-                        else Cafe.Cart.Add("Coca-Cola", countCola);
+                            if (Cafe.Cart.ContainsKey("Coca-Cola")) Cafe.Cart["Coca-Cola"] = countCola;
+                            else Cafe.Cart.Add("Coca-Cola", countCola);
 
-                        break;
-                    case "spriteCountTbox":
-                        
-                        int countSprite = Convert.ToInt32(spriteCountTbox.Text);
+                            break;
+                        case "spriteCountTbox":
 
-                        if (Cafe.Cart.ContainsKey("Sprite")) Cafe.Cart["Sprite"] = countSprite;
-                        else Cafe.Cart.Add("Sprite", Convert.ToInt32(spriteCountTbox.Text));
+                            int countSprite = Convert.ToInt32(spriteCountTbox.Text);
 
-                        break;
-                    default:
-                        break;
+                            if (Cafe.Cart.ContainsKey("Sprite")) Cafe.Cart["Sprite"] = countSprite;
+                            else Cafe.Cart.Add("Sprite", Convert.ToInt32(spriteCountTbox.Text));
+
+                            break;
+                        default:
+                            break;
+                    }
+                    Cafe.CalculateTotalPrice();
+                    cafeAmountLbl.Text = Cafe.TotalPrice.ToString();
                 }
-                Cafe.CalculateTotalPrice();
-                cafeAmountLbl.Text = Cafe.TotalPrice.ToString();
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
             }
         }
 
         private void hotdogCountBtnClicked(object sender, EventArgs e)
         {
-            if(sender is Button btn)
+            try
             {
-                if (btn.Text == "+")
+                if (sender is Button btn)
                 {
-                    //if (Cafe.Cart["Hot-Dog"] == 0) hotdogCBox.Checked = false;
-                    Cafe.Cart["Hot-Dog"] += 1;
-                }
-                else
-                {
-                    if (Cafe.Cart["Hot-Dog"] == 1) hotdogCBox.Checked = false;
-                    else Cafe.Cart["Hot-Dog"] -= 1;
-                }
-                hotdogCountTbox.Text = Cafe.Cart["Hot-Dog"].ToString();
+                    if (btn.Text == "+")
+                    {
+                        //if (Cafe.Cart["Hot-Dog"] == 0) hotdogCBox.Checked = false;
+                        Cafe.Cart["Hot-Dog"] += 1;
+                    }
+                    else
+                    {
+                        if (Cafe.Cart["Hot-Dog"] == 1) hotdogCBox.Checked = false;
+                        else Cafe.Cart["Hot-Dog"] -= 1;
+                    }
+                    hotdogCountTbox.Text = Cafe.Cart["Hot-Dog"].ToString();
 
+                }
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
             }
         }
 
         private void gamburgerCountBtnClicked(object sender, EventArgs e)
         {
-            if (sender is Button btn)
+            try
             {
-                if (btn.Text == "+")
+                if (sender is Button btn)
                 {
-                    Cafe.Cart["Gamburger"] += 1;
-                }
-                else
-                {
-                    if (Cafe.Cart["Gamburger"] == 1) gamburgerCBox.Checked = false;
-                    else Cafe.Cart["Gamburger"] -= 1;
-                }
-                gamburgerCountTbox.Text = Cafe.Cart["Gamburger"].ToString();
+                    if (btn.Text == "+")
+                    {
+                        Cafe.Cart["Gamburger"] += 1;
+                    }
+                    else
+                    {
+                        if (Cafe.Cart["Gamburger"] == 1) gamburgerCBox.Checked = false;
+                        else Cafe.Cart["Gamburger"] -= 1;
+                    }
+                    gamburgerCountTbox.Text = Cafe.Cart["Gamburger"].ToString();
 
+                }
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
             }
         }
 
         private void colaCountBtnClicked(object sender, EventArgs e)
         {
-            if (sender is Button btn)
+            try
             {
-                if (btn.Text == "+")
+                if (sender is Button btn)
                 {
-                    Cafe.Cart["Coca-Cola"] += 1;
+                    if (btn.Text == "+")
+                    {
+                        Cafe.Cart["Coca-Cola"] += 1;
+                    }
+                    else
+                    {
+                        if (Cafe.Cart["Coca-Cola"] == 1) cocacolaCBox.Checked = false;
+                        else Cafe.Cart["Coca-Cola"] -= 1;
+                    }
+                    cocacolaCountTbox.Text = Cafe.Cart["Coca-Cola"].ToString();
                 }
-                else
-                {
-                    if (Cafe.Cart["Coca-Cola"] == 1) cocacolaCBox.Checked = false;
-                    else Cafe.Cart["Coca-Cola"] -= 1;
-                }
-                cocacolaCountTbox.Text = Cafe.Cart["Coca-Cola"].ToString();
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
             }
         }
 
         private void spriteCountBtnClicked(object sender, EventArgs e)
         {
-            if (sender is Button btn)
+            try
             {
-                if (btn.Text == "+")
+                if (sender is Button btn)
                 {
-                    Cafe.Cart["Sprite"] += 1;
+                    if (btn.Text == "+")
+                    {
+                        Cafe.Cart["Sprite"] += 1;
+                    }
+                    else
+                    {
+                        if (Cafe.Cart["Sprite"] == 1) spriteCBox.Checked = false;
+                        else Cafe.Cart["Sprite"] -= 1;
+                    }
+                    spriteCountTbox.Text = Cafe.Cart["Sprite"].ToString();
                 }
-                else
-                {
-                    if (Cafe.Cart["Sprite"] == 1) spriteCBox.Checked = false;
-                    else Cafe.Cart["Sprite"] -= 1;
-                }
-                spriteCountTbox.Text = Cafe.Cart["Sprite"].ToString();
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
             }
         }
 
         private void fuelOrCafeAmountChanged(object sender, EventArgs e)
         {
-            totalPriceTbox.Text = (Convert.ToDouble(fuelAmountLbl.Text) + Cafe.TotalPrice).ToString(); 
+            try
+            {
+                totalPriceTbox.Text = (Convert.ToDouble(fuelAmountLbl.Text) + Cafe.TotalPrice).ToString();
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
+            }
         }
+
+     
     }
 }
