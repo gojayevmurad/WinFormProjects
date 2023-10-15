@@ -1,12 +1,19 @@
-﻿using System;
+﻿using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
 namespace BestOil
 {
@@ -22,6 +29,7 @@ namespace BestOil
                 InitializeComponent();
 
                 comboBxFuel.Items.AddRange(OilStation.Fuels.ToArray());
+                OilStation.SelectedFuel = OilStation.Fuels[0];
                 comboBxFuel.SelectedIndex = 0;
 
                 hotdogPriceTbox.Text = Cafe.Foods.Find(food => food.Title == "Hot-Dog").Price + " USD";
@@ -39,10 +47,8 @@ namespace BestOil
         {
             try
             {
-                var item = comboBxFuel.SelectedItem as Fuel;
-                if (item == null) return;
-                fuelLiterPrice.Text = item.Price.ToString();
-                selectedFuelUnitPrice = item.Price;
+                OilStation.SelectedFuel = comboBxFuel.SelectedItem as Fuel;
+                fuelLiterPrice.Text = OilStation.SelectedFuel.Price.ToString() + " USD";
             }
             catch (Exception ex)
             {
@@ -54,39 +60,43 @@ namespace BestOil
         {
             try
             {
-                var radioBtn = sender as RadioButton;
-                if (radioBtn.Text == "Liter")
+                if(sender is RadioButton rb)
                 {
-                    priceTxtBox.Enabled = false;
-                    literTxtBox.Enabled = true;
-                }
-                if (radioBtn.Text == "Price")
-                {
-                    priceTxtBox.Enabled = true;
-                    literTxtBox.Enabled = false;
+                    OilStation.WithAmount = rb.Text == "Price";
+                    literTxtBox.Enabled = !OilStation.WithAmount;
+                    priceTxtBox.Enabled = OilStation.WithAmount;
                 }
             }
             catch (Exception ex)
             { 
-                FileHandler.ErrorLog(ex); 
+                FileHandler.ErrorLog(ex);
             }
             
         }
+
 
         private void literTxtBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 string value = literTxtBox.Text;
-                if (value == String.Empty)
+                if (value != "" && value[value.Length-1] == '.')
                 {
-                    priceTxtBox.Text = string.Empty;
-                    setFuelAmountLbl("0,00");
                     return;
                 }
-                string fuelAmoubtLblData = (selectedFuelUnitPrice * Convert.ToDouble(value)).ToString();
-                priceTxtBox.Text = fuelAmoubtLblData;
-                setFuelAmountLbl(fuelAmoubtLblData);
+
+                if (value == "")
+                {
+                    OilStation.Liter = 0;
+                    priceTxtBox.Text = "";
+                }
+                else
+                {
+                    OilStation.Liter = Convert.ToDouble(value);
+                    priceTxtBox.Text = OilStation.Amount.ToString();
+                }
+                OilStation.Calculate();
+                setFuelAmountLbl();
             }
             catch (Exception ex)
             {
@@ -99,14 +109,23 @@ namespace BestOil
             try
             {
                 string value = priceTxtBox.Text;
-                if (value == String.Empty)
+                if (value != "" && value[value.Length - 1] == '.')
                 {
-                    literTxtBox.Text = string.Empty;
-                    setFuelAmountLbl("0,00");
                     return;
                 }
-                literTxtBox.Text = (Convert.ToDouble(value) / selectedFuelUnitPrice).ToString();
-                setFuelAmountLbl(value);
+
+                if (value == "")
+                {
+                    OilStation.Amount = 0;
+                    literTxtBox.Text = "";
+                }
+                else
+                {
+                    OilStation.Amount = Convert.ToDouble(value);
+                    literTxtBox.Text = OilStation.Liter.ToString();
+                }
+                OilStation.Calculate();
+                setFuelAmountLbl();
             }
             catch (Exception ex)
             {
@@ -114,9 +133,30 @@ namespace BestOil
             }
         }
 
-        private void setFuelAmountLbl(string value)
+        private void setFuelAmountLbl()
         {
-            fuelAmountLbl.Text = value;
+            try
+            {
+                double value = OilStation.Amount;
+                fuelAmountLbl.Text = value == 0 ? "0,00" : value.ToString();
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
+            }
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
 
         private void cafeCboxChanged(object sender, EventArgs e)
@@ -325,6 +365,81 @@ namespace BestOil
             }
         }
 
-     
+        private void btnPayAmount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (totalPriceTbox.Text == "0,00")
+                {
+                    MessageBox.Show("You haven't purchased anything yet, there is no amount to pay. Please choose the product you want to buy.",
+                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    using (PdfWriter writer = new PdfWriter("CHECK.pdf"))
+                    {
+                        using(PdfDocument pdf = new PdfDocument(writer.SetSmartMode(true)))
+                        {
+                            Document document = new Document(pdf);
+                            Table table = new Table(4);
+
+                            Cell cell1 = new Cell().Add(new Paragraph("Product Title"));
+                            Cell cell2 = new Cell().Add(new Paragraph("Count"));
+                            Cell cell3 = new Cell().Add(new Paragraph("Unit Price"));
+                            Cell cell4 = new Cell().Add(new Paragraph("Total Price"));
+
+                            table.AddCell(cell1);
+                            table.AddCell(cell2);
+                            table.AddCell(cell3);
+                            table.AddCell(cell4);
+
+                            foreach (var cartItem in Cafe.Cart)
+                            {
+                                if (cartItem.Value == 0) continue;
+                                table.AddCell(new Cell().Add(new Paragraph(cartItem.Key)));
+                                table.AddCell(new Cell().Add(new Paragraph(cartItem.Value.ToString())));
+
+                                foreach (var food in Cafe.Foods)
+                                {
+                                    if(food.Title == cartItem.Key)
+                                    {
+                                        table.AddCell(new Cell().Add(new Paragraph(food.Price.ToString())));
+                                        table.AddCell(new Cell().Add(new Paragraph((food.Price * cartItem.Value) + " USD")));
+                                    }
+                                }
+                            }
+
+                            if(fuelAmountLbl.Text != "0,00")
+                            {
+                                table.AddCell(new Cell().Add(new Paragraph(OilStation.SelectedFuel.Title)));
+                                table.AddCell(new Cell().Add(new Paragraph(OilStation.Liter + " L")));
+                                table.AddCell(new Cell().Add(new Paragraph(OilStation.SelectedFuel.Price + " USD / L.")));
+                                table.AddCell(new Cell().Add(new Paragraph(OilStation.Amount + " USD")));
+                            }
+
+                            table.AddCell(new Cell().Add(new Paragraph(" ")));
+                            table.AddCell(new Cell().Add(new Paragraph(" ")));
+                            table.AddCell(new Cell().Add(new Paragraph(" ")));
+                            table.AddCell(new Cell().Add(new Paragraph(" ")));
+
+
+                            table.AddCell(new Cell().Add(new Paragraph(" ")));
+                            table.AddCell(new Cell().Add(new Paragraph(" ")));
+                            table.AddCell(new Cell().Add(new Paragraph("Total Price : ")));
+                            table.AddCell(new Cell().Add(new Paragraph(totalPriceTbox.Text + " USD")));
+
+
+                            document.Add(table);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                FileHandler.ErrorLog(ex);
+            }
+
+        }
+
     }
 }

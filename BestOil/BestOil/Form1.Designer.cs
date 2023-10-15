@@ -76,7 +76,7 @@
             this.comboBxFuel = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupTotalPrice = new System.Windows.Forms.GroupBox();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnPayAmount = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.totalPriceTbox = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -587,10 +587,12 @@
             this.priceTxtBox.Margin = new System.Windows.Forms.Padding(0);
             this.priceTxtBox.Multiline = true;
             this.priceTxtBox.Name = "priceTxtBox";
+            this.priceTxtBox.ShortcutsEnabled = false;
             this.priceTxtBox.Size = new System.Drawing.Size(200, 33);
             this.priceTxtBox.TabIndex = 3;
             this.priceTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.priceTxtBox.TextChanged += new System.EventHandler(this.priceTxtBox_TextChanged);
+            this.priceTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // literTxtBox
             // 
@@ -598,10 +600,12 @@
             this.literTxtBox.Margin = new System.Windows.Forms.Padding(0);
             this.literTxtBox.Multiline = true;
             this.literTxtBox.Name = "literTxtBox";
+            this.literTxtBox.ShortcutsEnabled = false;
             this.literTxtBox.Size = new System.Drawing.Size(200, 33);
             this.literTxtBox.TabIndex = 2;
             this.literTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.literTxtBox.TextChanged += new System.EventHandler(this.literTxtBox_TextChanged);
+            this.literTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // radioButton2
             // 
@@ -659,7 +663,7 @@
             // 
             // groupTotalPrice
             // 
-            this.groupTotalPrice.Controls.Add(this.button9);
+            this.groupTotalPrice.Controls.Add(this.btnPayAmount);
             this.groupTotalPrice.Controls.Add(this.label10);
             this.groupTotalPrice.Controls.Add(this.totalPriceTbox);
             this.groupTotalPrice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -671,16 +675,17 @@
             this.groupTotalPrice.TabStop = false;
             this.groupTotalPrice.Text = "Total Price";
             // 
-            // button9
+            // btnPayAmount
             // 
-            this.button9.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button9.Location = new System.Drawing.Point(807, 37);
-            this.button9.Margin = new System.Windows.Forms.Padding(0);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(135, 37);
-            this.button9.TabIndex = 2;
-            this.button9.Text = "Pay";
-            this.button9.UseVisualStyleBackColor = false;
+            this.btnPayAmount.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnPayAmount.Location = new System.Drawing.Point(807, 37);
+            this.btnPayAmount.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPayAmount.Name = "btnPayAmount";
+            this.btnPayAmount.Size = new System.Drawing.Size(135, 37);
+            this.btnPayAmount.TabIndex = 2;
+            this.btnPayAmount.Text = "Pay";
+            this.btnPayAmount.UseVisualStyleBackColor = false;
+            this.btnPayAmount.Click += new System.EventHandler(this.btnPayAmount_Click);
             // 
             // label10
             // 
@@ -784,7 +789,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label cafeAmountLbl;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnPayAmount;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label totalPriceTbox;
         private System.Windows.Forms.Label label5;

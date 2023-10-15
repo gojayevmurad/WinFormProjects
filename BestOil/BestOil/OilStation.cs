@@ -21,11 +21,12 @@ namespace BestOil
         static public Fuel SelectedFuel { get; set; } = null;
         static public void Calculate()
         {
-            if (WithAmount)
+            if (SelectedFuel == null) return;
+            if (WithAmount && Amount >= 0)
             {
                 Liter = Amount / SelectedFuel.Price;
             }
-            else
+            else if(!WithAmount && Liter >= 0)
             {
                 Amount = Liter * SelectedFuel.Price;
             }
