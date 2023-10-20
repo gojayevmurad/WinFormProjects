@@ -11,5 +11,6 @@ namespace MyStat_Clone
         public string FullName { get; set; }
         public DateTime lastSeen { get; set; }
 
+
     }
 }

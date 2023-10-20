@@ -12,13 +12,9 @@ namespace MyStat_Clone
 {
     public partial class Form1 : Form
     {
-        StudentShowControl studentShowControl = new StudentShowControl();
         public Form1()
         {
             InitializeComponent();
-            studentShowControl.Location = new Point(-50, 0);
-            studentShowControl.Width = 500;
-            contentPanel.Controls.Add(studentShowControl);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -29,6 +25,21 @@ namespace MyStat_Clone
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void closeFormBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void guna2Panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2ImageButton1_Click(object sender, EventArgs e)
+        {
+            lessonTopicLbl.Text = "ControlsControlsControlsControls";
         }
     }
 }
