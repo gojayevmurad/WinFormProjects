@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyStat_Clone
+namespace ProductManager
 {
     internal static class Program
     {

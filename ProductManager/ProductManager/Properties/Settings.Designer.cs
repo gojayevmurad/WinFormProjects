@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyStat_Clone.Properties
+namespace ProductManager.Properties
 {
 
 
